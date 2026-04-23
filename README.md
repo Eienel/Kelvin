@@ -81,6 +81,47 @@ video/demo.mp4          ≤3-min demo
 
 ## Try it
 
+### Zero-setup (GitHub Codespaces — works from a phone browser)
+
+1. Open this repo on GitHub → **Code** button → **Codespaces** tab → **Create
+   codespace on `claude/kelvin-dlmm-appchain-dnuJQ`**.
+2. Wait ~2 min for the devcontainer to build. The `bootstrap.sh` runs
+   automatically — Foundry, pnpm, libs, `forge test` (expect 5/5 pass).
+3. Install the Initia daemons (one-time):
+
+   ```bash
+   ./scripts/install-initia-tools.sh
+   ```
+
+4. Get ~10 INIT on the `initiation-2` testnet from
+   <https://faucet.testnet.initia.xyz>. Note your operator key.
+5. Initialize + launch the rollup:
+
+   ```bash
+   ./scripts/launch-rollup.sh init     # interactive; pick kelvin-1 / EVM / Initia-L1
+   ./scripts/launch-rollup.sh up       # daemons in tmux
+   ./scripts/launch-rollup.sh status   # confirm block height climbing
+   ```
+
+6. Deploy Kelvin onto the live rollup:
+
+   ```bash
+   # Fill .env with KELVIN_RPC_URL=http://localhost:8545
+   # and DEPLOYER_PRIVATE_KEY=<same key you gave weave>
+   ./scripts/deploy-kelvin.sh
+   ```
+
+7. Start the frontend:
+
+   ```bash
+   cd frontend && pnpm dev
+   ```
+
+   Codespaces auto-forwards port 3000 and shows a public URL — open it in
+   your phone browser to drive the demo.
+
+### Manual setup (local or cloud VM)
+
 ```bash
 # 1. Launch the Kelvin rollup
 cat weave/README.md        # step-by-step weave init / opinit / relayer

@@ -1,0 +1,38 @@
+{
+  "name": "Kelvin — DLMM on Initia",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/go:1": { "version": "1.22" }
+  },
+  "postCreateCommand": "bash scripts/bootstrap.sh",
+  "forwardPorts": [3000, 8545, 26657, 1317, 8080],
+  "portsAttributes": {
+    "3000": { "label": "Kelvin frontend", "onAutoForward": "openBrowser" },
+    "8545": { "label": "Kelvin EVM JSON-RPC" },
+    "26657": { "label": "Kelvin Cosmos RPC" },
+    "1317": { "label": "Kelvin REST" },
+    "8080": { "label": "Kelvin explorer" }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "JuanBlanco.solidity",
+        "NomicFoundation.hardhat-solidity",
+        "bradlc.vscode-tailwindcss",
+        "ms-vscode.vscode-typescript-next"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:${containerEnv:HOME}/.foundry/bin:${containerEnv:HOME}/.local/bin:${containerEnv:HOME}/go/bin"
+  },
+  "hostRequirements": {
+    "cpus": 2,
+    "memory": "4gb",
+    "storage": "32gb"
+  }
+}

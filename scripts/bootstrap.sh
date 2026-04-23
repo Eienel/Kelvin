@@ -24,7 +24,10 @@ die() { printf "\033[1;31m✗ %s\033[0m\n" "$*" >&2; exit 1; }
 log "1/6  System deps"
 if command -v apt-get >/dev/null; then
   sudo apt-get update -qq
-  sudo apt-get install -y -qq jq tmux curl build-essential
+  # lz4 / xz-utils: weave decompresses genesis snapshots with these.
+  # unzip: install-initia-tools.sh may fetch zipped release assets.
+  sudo apt-get install -y -qq jq tmux curl build-essential \
+    lz4 xz-utils unzip ca-certificates
 fi
 ok "apt deps"
 

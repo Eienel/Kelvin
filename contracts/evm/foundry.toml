@@ -1,0 +1,27 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+test = "test"
+script = "script"
+
+solc = "0.8.20"
+optimizer = true
+optimizer_runs = 800
+# Pin evm_version to paris: no PUSH0, no MCOPY, no TLOAD/TSTORE.
+# Maximizes MiniEVM compatibility for the LB fork.
+evm_version = "paris"
+bytecode_hash = "none"
+
+fs_permissions = [{ access = "read", path = "./" }]
+remappings = [
+  "forge-std/=lib/forge-std/src/",
+  "openzeppelin/=lib/openzeppelin-contracts/contracts/",
+  "@openzeppelin/=lib/openzeppelin-contracts/",
+]
+
+[fuzz]
+runs = 256
+
+# Credit: DLMM math and pair/router/token structure forked from
+# Trader Joe v2.1.1 (https://github.com/traderjoe-xyz/joe-v2) under GPL-3.0.

@@ -1,0 +1,23 @@
+{
+  "//": "Template values used by `weave init` — adjust before running.",
+  "//2": "See: https://docs.initia.xyz/hackathon/get-started.md",
+  "chain_id": "kelvin-1",
+  "chain_name": "Kelvin",
+  "vm": "evm",
+  "da": "initia",
+  "gas_station": "init1kelvin000000000000000000000000000000000",
+  "op_bridge_id": 0,
+  "executor": {
+    "l1_rpc": "https://rpc.testnet.initia.xyz",
+    "l1_rest": "https://rest.testnet.initia.xyz",
+    "output_submission_interval_blocks": 300
+  },
+  "evm": {
+    "chain_id": 48888,
+    "gas_price": "0.015uinit",
+    "denom": "uinit"
+  },
+  "explorer": {
+    "base": "https://scan.testnet.initia.xyz/kelvin-1"
+  }
+}

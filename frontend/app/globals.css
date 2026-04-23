@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html, body { background: #09090b; color: #ededef; }
+
+/* Subtle grid for the landing page, reminiscent of orderbook vibes. */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.tick { animation: tick 1.2s ease-out; }
+@keyframes tick {
+  0% { background: rgba(34, 197, 94, 0.28); }
+  100% { background: transparent; }
+}

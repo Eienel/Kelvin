@@ -44,8 +44,8 @@ install_via_go() {
 ARCH="$(uname -m)"
 OS="$(uname -s | tr '[:upper:]' '[:lower:]')"
 case "$ARCH" in
-  x86_64|amd64) ARCH=amd64 ;;
-  aarch64|arm64) ARCH=arm64 ;;
+  x86_64|amd64) ARCH=amd64; ARCH_ALT=x86_64 ;;
+  aarch64|arm64) ARCH=arm64; ARCH_ALT=aarch64 ;;
   *) die "unsupported arch $ARCH" ;;
 esac
 
@@ -54,7 +54,7 @@ install_release() {
   log "github releases: $repo"
   local url
   url="$(curl -fsSL "https://api.github.com/repos/$repo/releases/latest" \
-    | jq -r ".assets[] | select(.name|test(\"${OS}.*${ARCH}|${ARCH}.*${OS}\"; \"i\")) | .browser_download_url" \
+    | jq -r ".assets[] | select(.name|test(\"${OS}.*${ARCH}|${ARCH}.*${OS}|${OS}.*${ARCH_ALT}|${ARCH_ALT}.*${OS}\"; \"i\")) | .browser_download_url" \
     | head -1)"
   if [ -z "$url" ] || [ "$url" = "null" ]; then
     warn "no release asset matched ${OS}_${ARCH} in $repo"

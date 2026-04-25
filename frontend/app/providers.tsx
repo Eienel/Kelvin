@@ -47,14 +47,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <WagmiProvider config={wagmiConfig}>
         <InterwovenKitProvider
           {...TESTNET}
-          defaultChainId={kelvinChainId}
-          enableAutoSign={{ [kelvinChainId]: ["/minievm.evm.v1.MsgCall"] }}
-          autoSignFeePolicy={{
-            [kelvinChainId]: {
-              allowedFeeDenoms: ["uinit"],
-              gasMultiplier: 1.2,
-            },
-          }}
+          defaultChainId="initiation-2"
         >
           {children}
         </InterwovenKitProvider>

@@ -11,7 +11,12 @@ import { kelvinChainId } from "@/lib/initia";
  * The pill surfaces remaining session time so the demo moment is visible.
  */
 export function SessionPill() {
-  const kit = useInterwovenKit() as any;
+  let kit: any;
+  try {
+    kit = useInterwovenKit() as any;
+  } catch {
+    return null;
+  }
   const autoSign = kit?.autoSign;
   const address: string | undefined = kit?.address;
   const expiresAt: number | undefined = autoSign?.expiredAtByChain?.[kelvinChainId];

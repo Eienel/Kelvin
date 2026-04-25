@@ -1,23 +1,12 @@
 {
   "project_name": "Kelvin",
   "repo_url": "https://github.com/Eienel/Kelvin",
-  "commit_sha": "f3d218d6baed866766c22b5283ecbede8a922bec",
+  "commit_sha": "1ccb632fd084141cfaefc0f6b196a0b3fdc43aad",
   "rollup_chain_id": "kelvin-1",
   "deployed_address": "0xf4b5cac96bf4718d1f659f32a2f60d6d82e63bb7",
   "vm": "evm",
   "native_feature": "auto-signing",
   "core_logic_path": "contracts/evm/src/KelvinPositionManager.sol",
   "native_feature_frontend_path": "frontend/lib/useKelvinTx.ts",
-  "demo_video_url": "https://youtu.be/PENDING",
-  "all_addresses": {
-    "LBFactory": "0x0ab86b3043d6d6c10ed4ac9b1326fffff6bdae7d",
-    "LBRouter": "0xcb7717edbb4a4cf33dd7712a91445d60dbc888e9",
-    "KelvinPositionManager": "0xf4b5cac96bf4718d1f659f32a2f60d6d82e63bb7",
-    "KelvinFeeRouter": "0x6702a27af6d0615c0fdbc0e8f7072fa3128faea9",
-    "MockUSDC": "0x9ef8f80bba52216dc314560606549c0b654b3f77",
-    "MockETH": "0xb1d6b8975038648f0a550d24758caaafe5b518ea",
-    "MockINIT": "0x0521cf2bf26e99bf56240006d54a8eb598659d02",
-    "ETH_USDC_pair": "0x985c750388dF338F378cb12118B9b975301e5228",
-    "INIT_USDC_pair": "0x19F6259AAfd1C9C1c3a537B16a2cded52b70F06a"
-  }
+  "demo_video_url": "https://youtu.be/PENDING"
 }

@@ -52,12 +52,29 @@ esac
 install_release() {
   local repo="$1" bin="$2"
   log "github releases: $repo"
-  local url
-  url="$(curl -fsSL "https://api.github.com/repos/$repo/releases/latest" \
-    | jq -r ".assets[] | select(.name | ascii_downcase | test(\"${OS}.*(${ARCH}|${ARCH_ALT})\")) | .browser_download_url" \
-    | head -1)"
+  local url=""
+  # Try the API first (works when authenticated or under the 60/hr limit).
+  local api_args=(-fsSL)
+  if [ -n "${GITHUB_TOKEN:-}" ]; then
+    api_args+=(-H "Authorization: Bearer $GITHUB_TOKEN")
+  fi
+  local api_resp
+  if api_resp="$(curl "${api_args[@]}" "https://api.github.com/repos/$repo/releases/latest" 2>/dev/null)"; then
+    url="$(echo "$api_resp" \
+      | jq -r ".assets[]? | select(.name | ascii_downcase | test(\"${OS}.*(${ARCH}|${ARCH_ALT})\")) | .browser_download_url" \
+      | head -1)"
+  fi
+  # Fallback: scrape the latest-release HTML page when the API is rate-limited.
   if [ -z "$url" ] || [ "$url" = "null" ]; then
-    warn "no release asset matched ${OS}_${ARCH} in $repo"
+    warn "API gave nothing (rate limit?) — falling back to HTML scrape"
+    url="$(curl -fsSL "https://github.com/$repo/releases/latest" \
+      | grep -oE "/$repo/releases/download/[^\" ]+\\.(tar\\.gz|zip)" \
+      | grep -iE "${OS}.*(${ARCH}|${ARCH_ALT})" \
+      | head -1)"
+    [ -n "$url" ] && url="https://github.com$url"
+  fi
+  if [ -z "$url" ] || [ "$url" = "null" ]; then
+    warn "no release asset matched ${OS}_${ARCH} (or ${ARCH_ALT}) in $repo"
     return 1
   fi
   log "downloading $url"

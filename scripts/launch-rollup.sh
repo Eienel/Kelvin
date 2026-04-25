@@ -63,7 +63,7 @@ case "$cmd" in
     fi
 
     log "Starting daemons in tmux session '$SESSION'"
-    tmux new-session -d -s "$SESSION" -n rollup "minitiad start 2>&1 | tee /tmp/kelvin-minitiad.log"
+    tmux new-session -d -s "$SESSION" -n rollup "minitiad start --home $HOME/.initia 2>&1 | tee /tmp/kelvin-minitiad.log"
     tmux split-window -v -t "$SESSION:rollup" "weave opinit start executor 2>&1 | tee /tmp/kelvin-opinit.log"
     tmux split-window -v -t "$SESSION:rollup" "weave relayer start 2>&1 | tee /tmp/kelvin-relayer.log"
     tmux select-layout -t "$SESSION:rollup" tiled

@@ -41,6 +41,7 @@ log "Extracting addresses"
 # instead of converting hex→dec (jq's tonumber overflows on large chain IDs).
 ARTIFACT="$(ls -t broadcast/Deploy.s.sol/*/run-latest.json 2>/dev/null | head -1)"
 [ -f "$ARTIFACT" ] || die "broadcast artifact not found under broadcast/Deploy.s.sol/"
+ARTIFACT="$(realpath "$ARTIFACT")"
 CHAIN_ID_DEC="$(basename "$(dirname "$ARTIFACT")")"
 log "Found broadcast artifact at $ARTIFACT (chain $CHAIN_ID_DEC)"
 

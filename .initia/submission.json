@@ -8,5 +8,5 @@
   "native_feature": "auto-signing",
   "core_logic_path": "contracts/evm/src/KelvinPositionManager.sol",
   "native_feature_frontend_path": "frontend/lib/useKelvinTx.ts",
-  "demo_video_url": "https://youtu.be/PENDING"
+  "demo_video_url": "https://youtu.be/Oj9a8ZpO8e0?si=MDtgLcQb63wNXiex"
 }

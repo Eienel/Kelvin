@@ -10,8 +10,6 @@ import {
   initiaPrivyWalletConnector,
   injectStyles,
 } from "@initia/interwovenkit-react";
-// The package ships its CSS as a string; injectStyles mounts it once.
-// @ts-expect-error — shipped as a raw string module.
 import styles from "@initia/interwovenkit-react/styles.js";
 import { kelvinChainId } from "@/lib/initia";
 

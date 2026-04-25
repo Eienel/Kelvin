@@ -37,12 +37,12 @@ forge script script/Deploy.s.sol:Deploy \
 
 log "Extracting addresses"
 # Prefer the broadcast artifact (JSON) for reliability.
-CHAIN_ID_DEC=$(curl -fsS -X POST "$KELVIN_RPC_URL" \
-  -H 'content-type: application/json' \
-  -d '{"jsonrpc":"2.0","method":"eth_chainId","params":[],"id":1}' \
-  | jq -r '.result' | awk '{printf "%d", $0}')
-ARTIFACT="broadcast/Deploy.s.sol/$CHAIN_ID_DEC/run-latest.json"
-[ -f "$ARTIFACT" ] || die "broadcast artifact not found at $ARTIFACT"
+# Chain IDs on MiniEVM exceed 32-bit. Locate the artifact directory directly
+# instead of converting hex→dec (jq's tonumber overflows on large chain IDs).
+ARTIFACT="$(ls -t broadcast/Deploy.s.sol/*/run-latest.json 2>/dev/null | head -1)"
+[ -f "$ARTIFACT" ] || die "broadcast artifact not found under broadcast/Deploy.s.sol/"
+CHAIN_ID_DEC="$(basename "$(dirname "$ARTIFACT")")"
+log "Found broadcast artifact at $ARTIFACT (chain $CHAIN_ID_DEC)"
 
 declare -A addrs
 while IFS='=' read -r name addr; do

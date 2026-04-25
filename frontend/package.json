@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "postinstall": "node scripts/patch-cosmjs-exports.mjs"
   },
   "dependencies": {
     "@initia/interwovenkit-react": "^2.8.0",
@@ -30,69 +31,6 @@
     "typescript": "^5.6.3"
   },
   "pnpm": {
-    "packageExtensions": {
-      "cosmjs-types": {
-        "exports": {
-          "./*": "./*.js",
-          "./*.js": "./*.js"
-        }
-      },
-      "@cosmjs/amino": {
-        "exports": {
-          "./*": "./build/*.js",
-          "./build/*": "./build/*.js",
-          "./build/*.js": "./build/*.js"
-        }
-      },
-      "@cosmjs/crypto": {
-        "exports": {
-          "./*": "./build/*.js",
-          "./build/*": "./build/*.js",
-          "./build/*.js": "./build/*.js"
-        }
-      },
-      "@cosmjs/encoding": {
-        "exports": {
-          "./*": "./build/*.js",
-          "./build/*": "./build/*.js",
-          "./build/*.js": "./build/*.js"
-        }
-      },
-      "@cosmjs/math": {
-        "exports": {
-          "./*": "./build/*.js",
-          "./build/*": "./build/*.js",
-          "./build/*.js": "./build/*.js"
-        }
-      },
-      "@cosmjs/proto-signing": {
-        "exports": {
-          "./*": "./build/*.js",
-          "./build/*": "./build/*.js",
-          "./build/*.js": "./build/*.js"
-        }
-      },
-      "@cosmjs/stargate": {
-        "exports": {
-          "./*": "./build/*.js",
-          "./build/*": "./build/*.js",
-          "./build/*.js": "./build/*.js"
-        }
-      },
-      "@cosmjs/tendermint-rpc": {
-        "exports": {
-          "./*": "./build/*.js",
-          "./build/*": "./build/*.js",
-          "./build/*.js": "./build/*.js"
-        }
-      },
-      "@cosmjs/utils": {
-        "exports": {
-          "./*": "./build/*.js",
-          "./build/*": "./build/*.js",
-          "./build/*.js": "./build/*.js"
-        }
-      }
-    }
+    "onlyBuiltDependencies": []
   }
 }

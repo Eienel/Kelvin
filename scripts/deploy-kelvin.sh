@@ -32,6 +32,7 @@ forge script script/Deploy.s.sol:Deploy \
   --rpc-url "$KELVIN_RPC_URL" \
   --private-key "$DEPLOYER_PRIVATE_KEY" \
   --broadcast --legacy --slow \
+  --gas-estimate-multiplier 250 \
   2>&1 | tee /tmp/kelvin-deploy.log
 
 log "Extracting addresses"

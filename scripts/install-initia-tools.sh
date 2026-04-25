@@ -54,7 +54,7 @@ install_release() {
   log "github releases: $repo"
   local url
   url="$(curl -fsSL "https://api.github.com/repos/$repo/releases/latest" \
-    | jq -r ".assets[] | select(.name|test(\"${OS}.*${ARCH}|${ARCH}.*${OS}|${OS}.*${ARCH_ALT}|${ARCH_ALT}.*${OS}\"; \"i\")) | .browser_download_url" \
+    | jq -r ".assets[] | select(.name | ascii_downcase | test(\"${OS}.*(${ARCH}|${ARCH_ALT})\")) | .browser_download_url" \
     | head -1)"
   if [ -z "$url" ] || [ "$url" = "null" ]; then
     warn "no release asset matched ${OS}_${ARCH} in $repo"

@@ -40,7 +40,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
     setMounted(true);
   }, []);
 
-  if (!mounted) return <>{children}</>;
+  if (!mounted) return null;
 
   return (
     <QueryClientProvider client={queryClient}>

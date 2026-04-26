@@ -1,7 +1,7 @@
 {
   "project_name": "Kelvin",
   "repo_url": "https://github.com/Eienel/Kelvin",
-  "commit_sha": "1ccb632fd084141cfaefc0f6b196a0b3fdc43aad",
+  "commit_sha": "18ebcaff9ba0e3c8e59fe5c55b4ebfc23556238e",
   "rollup_chain_id": "kelvin-1",
   "deployed_address": "0xf4b5cac96bf4718d1f659f32a2f60d6d82e63bb7",
   "vm": "evm",
